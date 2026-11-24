@@ -48,7 +48,7 @@ struct SettingsView: View {
 
 /// The GitHub Pages site in /docs. Update if the repository or owner name changes.
 enum AppLinks {
-    static let site = "https://pigeonhole-game.github.io/lexicurio"
+    static let site = "https://pigeonhole-game.github.io/Lexicurio"
     static let privacy = URL(string: site + "/privacy.html")!
     static let support = URL(string: site + "/support.html")!
 }
