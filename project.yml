@@ -32,8 +32,8 @@ targets:
         CFBundleDisplayName: Lexicurio
         UILaunchScreen: {}
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
-        # Google's public TEST app ID. Replace with your own AdMob app ID before release.
-        GADApplicationIdentifier: ca-app-pub-3940256099942544~1458002511
+        # Lexicurio's AdMob app ID.
+        GADApplicationIdentifier: ca-app-pub-8750404699725798~7194480102
         NSUserTrackingUsageDescription: Lexicurio uses this to show ads that are more relevant to you. Upgrade to Lexicurio Pro to remove ads.
         SKAdNetworkItems:
           - SKAdNetworkIdentifier: cstr6suwn9.skadnetwork

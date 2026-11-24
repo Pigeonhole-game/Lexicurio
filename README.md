@@ -26,7 +26,7 @@ xcodegen
 open Lexicurio.xcodeproj
 ```
 
-Pick an iPhone simulator and run. Out of the box the app uses Google's **test** ad units, so you will see "Test Ad" banners, and the local StoreKit file lets you test the Pro purchase in the simulator.
+Pick an iPhone simulator and run. Debug builds use Google's **test** ad units, so you will see "Test Ad" banners and never click your own live ads. Release builds use the real Lexicurio ad units. The local StoreKit file lets you test the Pro purchase in the simulator.
 
 ## Scoring
 
@@ -45,8 +45,8 @@ At launch the app shows Google's consent form where required (GDPR and US state 
 
 ## Before App Store release
 
-1. **AdMob**: create the app and four ad units (banner, interstitial, rewarded, app open) at admob.google.com. Put the IDs in `Lexicurio/Ads/AdUnits.swift` and the app ID in `GADApplicationIdentifier` in `project.yml`. Set up the GDPR and US-state privacy messages in AdMob under Privacy & messaging.
-2. **app-ads.txt**: AdMob gives you a line to publish at the root of your developer website. A GitHub Pages user site (`<user>.github.io`) can host it.
+1. **AdMob**: done. The Lexicurio iOS app and its four ad units (banner, interstitial, rewarded, app open) exist in AdMob, and their IDs are in `Lexicurio/Ads/AdUnits.swift` and `project.yml`. Still to do: in AdMob under Privacy & messaging, create the GDPR and US-state messages for Lexicurio, and once the app is live, add its App Store listing in AdMob so Google can review it and lift the "limited ad serving" state.
+2. **app-ads.txt**: publish this line at the root of the developer website you list in App Store Connect (for example a `<user>.github.io` site): `google.com, pub-8750404699725798, DIRECT, f08c47fec0942fa0`. A copy is in `docs/app-ads.txt`.
 3. **App Store Connect**:
    - Bundle ID `com.lexicurio.app` (change in `project.yml` if you prefer another).
    - In-app purchase, non-consumable, product ID `com.lexicurio.app.pro`.
