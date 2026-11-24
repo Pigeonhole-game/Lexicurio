@@ -1,0 +1,35 @@
+import SwiftUI
+
+struct RootView: View {
+    @Environment(AdsManager.self) private var ads
+
+    var body: some View {
+        VStack(spacing: 0) {
+            TabView {
+                PlayView()
+                    .tabItem { Label("Play", systemImage: "character.book.closed") }
+                LeaderboardView()
+                    .tabItem { Label("Leaderboard", systemImage: "list.number") }
+                MedalsView()
+                    .tabItem { Label("Medals", systemImage: "medal") }
+                SettingsView()
+                    .tabItem { Label("Settings", systemImage: "gearshape") }
+            }
+            if ads.canShowAds {
+                BannerAdView()
+                    .frame(height: 50)
+                    .accessibilityLabel("Advertisement")
+            }
+        }
+        .tint(Theme.accent)
+    }
+}
+
+enum Theme {
+    static let accent = Color(red: 0.12, green: 0.31, blue: 0.55)
+    static let brass = Color(red: 0.66, green: 0.45, blue: 0.10)
+    static let gold = Color(red: 0.79, green: 0.59, blue: 0.11)
+    static let silver = Color(red: 0.56, green: 0.60, blue: 0.65)
+    static let bronze = Color(red: 0.63, green: 0.38, blue: 0.18)
+    static func medal(_ place: Int) -> Color { [gold, silver, bronze][max(0, min(2, place - 1))] }
+}

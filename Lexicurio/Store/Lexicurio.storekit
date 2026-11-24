@@ -1,0 +1,24 @@
+{
+  "identifier" : "4C1E9C0A-6B6E-4E39-9E43-0C5A1F2B7D11",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : true,
+      "internalID" : "6740000001",
+      "localizations" : [
+        {
+          "description" : "Remove all ads and get free hints in practice games.",
+          "displayName" : "Lexicurio Pro",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.lexicurio.app.pro",
+      "referenceName" : "Lexicurio Pro (ad-free)",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : { "_failTransactionsEnabled" : false },
+  "subscriptionGroups" : [],
+  "version" : { "major" : 3, "minor" : 0 }
+}
