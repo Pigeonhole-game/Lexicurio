@@ -6,3 +6,7 @@ DerivedData/
 *.ipa
 Lexicurio/Info.plist
 build/
+
+# App Store Connect API keys (never commit)
+*.p8
+AppStoreAssets/
