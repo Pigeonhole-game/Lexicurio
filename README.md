@@ -52,8 +52,7 @@ At launch the app shows Google's consent form where required (GDPR and US state 
    - In-app purchase, non-consumable, product ID `com.lexicurio.app.pro`.
    - Game Center: a **recurring** leaderboard `lexicurio.daily` (high score, 1-day duration, starting 00:00 UTC), a classic leaderboard `lexicurio.best`, and achievements `lexicurio.medal.gold`, `lexicurio.medal.silver`, `lexicurio.medal.bronze`.
    - Privacy "nutrition label": declare data collected by Google AdMob (device ID, usage data, diagnostics, coarse location) used for third-party advertising.
-4. **GitHub Pages**: in the repo's Settings > Pages, serve from the `main` branch, `/docs` folder. Use `privacy.html` as the App Store privacy policy URL and `support.html` as the support URL. Update `AppLinks` in `SettingsView.swift` if the URL differs. Add a support email to `support.html`.
-5. Replace the placeholder privacy policy wording with text you have reviewed.
+4. **GitHub Pages**: in the repo's Settings > Pages, serve from the `main` branch, `/docs` folder. Use `privacy.html` as the App Store privacy policy URL and `support.html` as the support URL. Update `AppLinks` in `SettingsView.swift` if the URL differs.
 
 ## Known limits
 
