@@ -20,9 +20,9 @@ struct SettingsView: View {
                         Button {
                             Task { await store.buy() }
                         } label: {
-                            Text(store.pro.map { "Go ad-free for \($0.displayPrice)" } ?? "Go ad-free")
+                            Text(priceLabel)
                         }
-                        .disabled(store.pro == nil || store.purchaseInFlight)
+                        .disabled(!canBuy)
                     }
                     Button("Restore purchases") { Task { await store.restore() } }
                     if let msg = store.message { Text(msg).font(.footnote).foregroundStyle(.secondary) }
@@ -43,6 +43,20 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
         }
+    }
+
+    private var priceLabel: String {
+        #if DEBUG
+        if ScreenshotMode.isOn { return "Go ad-free for \(ScreenshotMode.proPrice)" }
+        #endif
+        return store.pro.map { "Go ad-free for \($0.displayPrice)" } ?? "Go ad-free"
+    }
+
+    private var canBuy: Bool {
+        #if DEBUG
+        if ScreenshotMode.isOn { return true }
+        #endif
+        return store.pro != nil && !store.purchaseInFlight
     }
 }
 

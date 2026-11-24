@@ -9,6 +9,8 @@ enum ScreenshotMode {
     static let isOn = ProcessInfo.processInfo.arguments.contains("-screenshots")
     static var tab: Int { UserDefaults.standard.integer(forKey: "screenshotTab") }
     static var scene: String { UserDefaults.standard.string(forKey: "screenshotScene") ?? "intro" }
+    /// Lexicurio Pro price shown on Settings (StoreKit is skipped); matches Lexicurio.storekit.
+    static let proPrice = "$2.99"
     /// Text pre-typed into the round's answer field.
     static var prefill: String? { isOn && scene == "round" ? demoGuess(roundIndex: 3) : nil }
 
