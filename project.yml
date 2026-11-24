@@ -54,5 +54,8 @@ targets:
         CURRENT_PROJECT_VERSION: "1"
         SWIFT_VERSION: "5.9"
         OTHER_LDFLAGS: ["-ObjC"]
+        TARGETED_DEVICE_FAMILY: "1"
+        DEVELOPMENT_TEAM: BN3YD74A32
+        CODE_SIGN_STYLE: Automatic
     scheme:
       storeKitConfiguration: Lexicurio/Store/Lexicurio.storekit
