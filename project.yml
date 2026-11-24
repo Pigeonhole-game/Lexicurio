@@ -34,6 +34,7 @@ targets:
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         # Lexicurio's AdMob app ID.
         GADApplicationIdentifier: ca-app-pub-8750404699725798~7194480102
+        ITSAppUsesNonExemptEncryption: false
         NSUserTrackingUsageDescription: Lexicurio uses this to show ads that are more relevant to you. Upgrade to Lexicurio Pro to remove ads.
         SKAdNetworkItems:
           - SKAdNetworkIdentifier: cstr6suwn9.skadnetwork
