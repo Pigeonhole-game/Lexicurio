@@ -58,4 +58,4 @@ At launch the app shows Google's consent form where required (GDPR and US state 
 
 - The thesaurus comes from WordNet and accepts some odd matches while missing some expected synonyms. It needs a curation pass.
 - Medals: Game Center keeps each daily leaderboard's previous occurrence, so the app awards a medal the next time a top-three player opens it, and shows only that player's own medal cabinet. A shared all-time medal table for every player would need a small backend.
-- Not yet compiled: this project was written without access to a Mac, so expect to fix minor compile errors on the first Xcode build.
+- Verified 2026-11-24: Debug and Release simulator builds succeed with Xcode 27.2, GoogleMobileAds 12.14.0 and UMP 3.1.0.
