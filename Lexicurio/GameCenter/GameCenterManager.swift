@@ -72,6 +72,9 @@ final class GameCenterManager {
     enum Scope { case today, yesterday, best }
 
     func loadRows(_ scope: Scope) async -> [Row] {
+        #if DEBUG
+        if ScreenshotMode.isOn { return Self.demoRows(scope) }
+        #endif
         guard isAuthenticated else { return [] }
         do {
             let id = scope == .best ? Self.bestID : Self.dailyID
@@ -128,3 +131,36 @@ final class DashboardDismisser: NSObject, GKGameCenterControllerDelegate {
     static let shared = DashboardDismisser()
     func gameCenterViewControllerDidFinish(_ vc: GKGameCenterViewController) { vc.dismiss(animated: true) }
 }
+
+#if DEBUG
+extension GameCenterManager {
+    private static let demoNames = ["quillfeather", "Marigold.K", "obsidian_owl", "Tess Varga", "wordsmith88",
+                                    "Juniper", "lexi_lou", "R. Okafor", "nightjar", "Bramble", "Pip Hollis", "cormorant"]
+
+    static func demoRows(_ scope: Scope) -> [Row] {
+        let base: [Int]
+        let me: Int
+        switch scope {
+        case .today: base = [612, 587, 559, 541, 528, 503, 476, 452, 431, 410, 388, 362]; me = 1
+        case .yesterday: base = [634, 601, 566, 549, 520, 497, 470, 445, 433, 401, 377, 350]; me = 2
+        case .best: base = [688, 671, 652, 640, 634, 629, 617, 603, 598, 586, 571, 560]; me = 4
+        }
+        return base.enumerated().map { i, score in
+            Row(id: "demo\(i)", rank: i + 1, name: i == me ? "inkwell" : demoNames[i], score: score, isMe: i == me)
+        }
+    }
+
+    func seedForScreenshots() {
+        isAuthenticated = true
+        playerName = "inkwell"
+        statusText = ""
+        podium = Array(Self.demoRows(.yesterday).prefix(3))
+        let cal = DailyPuzzle.utcCalendar
+        let places = [3, 1, 2, 3, 2, 1, 3, 3, 2]
+        medals = places.enumerated().map { i, place in
+            let d = cal.date(byAdding: .day, value: -(1 + i * 3), to: .now)!
+            return Medal(day: DailyPuzzle.dayKey(d), place: place, score: [566, 612, 589, 541, 577, 640, 530, 552, 598][i])
+        }
+    }
+}
+#endif

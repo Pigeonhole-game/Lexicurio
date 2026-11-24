@@ -88,3 +88,32 @@ final class GameModel {
         hint = "Starts with “\(rare.word.prefix(1).uppercased())”, \(rare.word.count) letters, worth \(rare.points)."
     }
 }
+
+#if DEBUG
+extension GameModel {
+    /// Puts the daily game into the state named by `-screenshotScene`, without saving a score.
+    func seedForScreenshots() {
+        let played: Int
+        switch ScreenshotMode.scene {
+        case "round": played = 3
+        case "result": played = 4
+        case "final": played = Scoring.rounds
+        default: return
+        }
+        ranked = true
+        day = DailyPuzzle.dayKey()
+        words = DailyPuzzle.words(for: day)
+        answers = []; hint = nil
+        for i in 0..<played {
+            index = i
+            phase = .round
+            submit(ScreenshotMode.demoGuess(roundIndex: i) ?? "")
+        }
+        switch ScreenshotMode.scene {
+        case "round": index = played; phase = .round
+        case "final": phase = .final
+        default: break
+        }
+    }
+}
+#endif

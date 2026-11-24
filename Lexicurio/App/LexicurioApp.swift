@@ -14,6 +14,9 @@ struct LexicurioApp: App {
                 .environment(ads)
                 .environment(gameCenter)
                 .task {
+                    #if DEBUG
+                    if ScreenshotMode.isOn { gameCenter.seedForScreenshots(); return }
+                    #endif
                     await store.start()
                     ads.isAdFree = store.isAdFree
                     await ads.startIfAllowed()
@@ -21,7 +24,7 @@ struct LexicurioApp: App {
                 }
                 .onChange(of: store.isAdFree) { _, adFree in ads.isAdFree = adFree }
                 .onChange(of: scenePhase) { _, phase in
-                    if phase == .active { ads.appOpen.showIfAvailable() }
+                    if phase == .active && ads.canShowAds { ads.appOpen.showIfAvailable() }
                 }
         }
     }

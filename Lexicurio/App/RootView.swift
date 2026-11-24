@@ -2,18 +2,24 @@ import SwiftUI
 
 struct RootView: View {
     @Environment(AdsManager.self) private var ads
+    @State private var tab: Int = {
+        #if DEBUG
+        if ScreenshotMode.isOn { return ScreenshotMode.tab }
+        #endif
+        return 0
+    }()
 
     var body: some View {
         VStack(spacing: 0) {
-            TabView {
+            TabView(selection: $tab) {
                 PlayView()
-                    .tabItem { Label("Play", systemImage: "character.book.closed") }
+                    .tabItem { Label("Play", systemImage: "character.book.closed") }.tag(0)
                 LeaderboardView()
-                    .tabItem { Label("Leaderboard", systemImage: "list.number") }
+                    .tabItem { Label("Leaderboard", systemImage: "list.number") }.tag(1)
                 MedalsView()
-                    .tabItem { Label("Medals", systemImage: "medal") }
+                    .tabItem { Label("Medals", systemImage: "medal") }.tag(2)
                 SettingsView()
-                    .tabItem { Label("Settings", systemImage: "gearshape") }
+                    .tabItem { Label("Settings", systemImage: "gearshape") }.tag(3)
             }
             if ads.canShowAds {
                 BannerAdView()

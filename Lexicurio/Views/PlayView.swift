@@ -1,7 +1,13 @@
 import SwiftUI
 
 struct PlayView: View {
-    @State private var game = GameModel()
+    @State private var game: GameModel = {
+        let g = GameModel()
+        #if DEBUG
+        if ScreenshotMode.isOn { g.seedForScreenshots() }
+        #endif
+        return g
+    }()
     @Environment(AdsManager.self) private var ads
     @Environment(StoreManager.self) private var store
     @Environment(GameCenterManager.self) private var gameCenter
@@ -134,7 +140,12 @@ private struct RoundCard: View {
                     }
                 }
             }
-            .onAppear { text = ""; error = nil; focused = true }
+            .onAppear {
+                text = ""; error = nil; focused = true
+                #if DEBUG
+                if let p = ScreenshotMode.prefill { text = p; focused = false }
+                #endif
+            }
             .id(game.index)
         }
     }
